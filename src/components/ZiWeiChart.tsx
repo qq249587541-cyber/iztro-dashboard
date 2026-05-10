@@ -102,19 +102,19 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                 width={boxSize}
                 height={boxSize}
                 rx={2}
-                fill={isSelected ? '#fdf0f0' : isHovered ? '#fdfbf5' : '#faf6ed'}
-                stroke={isSelected ? '#a84a4a' : isHovered ? '#c9a96e' : '#c9a96e'}
-                strokeWidth={isSelected ? 2.5 : isHovered ? 2 : 1}
+                fill={isSelected ? '#eef2ee' : isHovered ? '#f5f4f1' : '#ffffff'}
+                stroke={isSelected ? '#4a6352' : isHovered ? '#4a6352' : '#e8e6e3'}
+                strokeWidth={isSelected ? 2 : isHovered ? 1.5 : 1}
                 style={{
                   filter: isHovered
-                    ? 'drop-shadow(0 0 4px rgba(201,169,110,0.5))'
+                    ? 'drop-shadow(0 1px 4px rgba(0,0,0,0.06))'
                     : isSelected
-                    ? 'drop-shadow(0 0 4px rgba(168,74,74,0.4))'
+                    ? 'drop-shadow(0 1px 4px rgba(74,99,82,0.1))'
                     : 'none',
                   transition: 'all 0.3s ease',
                 }}
               />
-              {/* 内边框 — 传统窗格感 */}
+              {/* 内边框 — 极简 */}
               <rect
                 x={3}
                 y={3}
@@ -122,34 +122,33 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                 height={boxSize - 6}
                 rx={1}
                 fill="none"
-                stroke={isSelected ? '#a84a4a' : '#d5cbb8'}
+                stroke={isSelected ? '#4a6352' : '#f0eeea'}
                 strokeWidth={0.5}
                 opacity={0.6}
                 style={{ transition: 'all 0.3s ease' }}
               />
-              {/* 角花装饰 — 左上 */}
+              {/* 角花 — 极简 */}
               <path d="M 3 12 L 3 3 L 12 3"
-                    fill="none" stroke="#c9a96e" strokeWidth={1} opacity={isHovered ? 1 : 0.5}
+                    fill="none" stroke="#e8e6e3" strokeWidth={1} opacity={isHovered ? 0.8 : 0.3}
                     style={{ transition: 'opacity 0.3s' }} />
-              {/* 角花装饰 — 右下 */}
               <path d={`M ${boxSize-12} ${boxSize-3} L ${boxSize-3} ${boxSize-3} L ${boxSize-3} ${boxSize-12}`}
-                    fill="none" stroke="#c9a96e" strokeWidth={1} opacity={isHovered ? 1 : 0.5}
+                    fill="none" stroke="#e8e6e3" strokeWidth={1} opacity={isHovered ? 0.8 : 0.3}
                     style={{ transition: 'opacity 0.3s' }} />
 
               {/* 顶部信息条 — 大限+长生 */}
               <rect x={4} y={4} width={boxSize - 8} height={topBarY - 2} rx={1}
-                    fill={isHovered ? 'rgba(201,169,110,0.06)' : 'rgba(201,169,110,0.03)'} />
-              <text x={8} y={topBarY - 2} fill="#8a8a8a" fontSize={9} fontFamily="'Noto Serif SC', serif">
+                    fill={isHovered ? 'rgba(74,99,82,0.04)' : 'rgba(0,0,0,0.02)'} />
+              <text x={8} y={topBarY - 2} fill="#7a7a7a" fontSize={9} fontFamily="'Noto Serif SC', serif">
                 {palace.decadal?.range?.[0]}-{palace.decadal?.range?.[1]}岁
               </text>
               {palace.changsheng12 && (
-                <text x={boxSize - 8} y={topBarY - 2} fill="#6a7a6a" fontSize={9} textAnchor="end" fontFamily="'Noto Serif SC', serif">
+                <text x={boxSize - 8} y={topBarY - 2} fill="#5a7562" fontSize={9} textAnchor="end" fontFamily="'Noto Serif SC', serif">
                   长生:{palace.changsheng12}
                 </text>
               )}
 
               {/* 天干地支 */}
-              <text x={boxSize - 8} y={topBarY + 10} fill="#6b6b6b" fontSize={10} textAnchor="end" fontFamily="'Noto Serif SC', serif">
+              <text x={boxSize - 8} y={topBarY + 10} fill="#5c5c5c" fontSize={10} textAnchor="end" fontFamily="'Noto Serif SC', serif">
                 {palace.heavenlyStem}{palace.earthlyBranch}
               </text>
 
@@ -171,7 +170,7 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                       fontFamily="'Noto Serif SC', serif"
                       fontWeight={isStarHovered ? 'bold' : 'normal'}
                       style={{
-                        filter: isStarHovered ? 'drop-shadow(0 0 3px rgba(28,28,28,0.4))' : 'none',
+                        filter: isStarHovered ? 'drop-shadow(0 0 2px rgba(0,0,0,0.15))' : 'none',
                         transition: 'all 0.2s ease',
                         cursor: 'help',
                       }}
@@ -183,7 +182,7 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                       <text
                         x={12 + s.name.length * 13 + 2}
                         y={sy}
-                        fill="#8a8a8a"
+                        fill="#9a9a9a"
                         fontSize={10}
                         fontFamily="'Noto Serif SC', serif"
                       >
@@ -198,7 +197,7 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                         width={10}
                         height={10}
                         rx={2}
-                        fill={MUTAGEN_COLOR[s.mutagen] || '#c9a96e'}
+                        fill={MUTAGEN_COLOR[s.mutagen] || '#9a8a7a'}
                         opacity={0.85}
                       />
                     )}
@@ -211,7 +210,7 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                 <text
                   x={12}
                   y={minorStarY}
-                  fill="#6a6a6a"
+                  fill="#5c5c5c"
                   fontSize={11}
                   fontFamily="'Noto Serif SC', serif"
                 >
@@ -224,7 +223,7 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                 <text
                   x={12}
                   y={adjStarY}
-                  fill="#9a9a9a"
+                  fill="#8a8a8a"
                   fontSize={10}
                   fontFamily="'Noto Serif SC', serif"
                 >
@@ -236,7 +235,7 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
               <text
                 x={boxSize / 2}
                 y={palaceNameY}
-                fill="#2d4a3e"
+                fill="#2a2a2a"
                 fontSize={13}
                 fontWeight="bold"
                 textAnchor="middle"
@@ -250,7 +249,7 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                 <text
                   x={boxSize - 8}
                   y={palaceNameY}
-                  fill={isSoul ? '#a84a4a' : '#5a3a2a'}
+                  fill={isSoul ? '#a05050' : '#5a5a5a'}
                   fontSize={11}
                   textAnchor="end"
                   fontWeight="bold"
@@ -266,7 +265,7 @@ export default function ZiWeiChart({ astrolabe, onPalaceClick, selectedPalace, b
                 <text
                   x={8}
                   y={boxSize - 22}
-                  fill="#b0a890"
+                  fill="#b0b0b0"
                   fontSize={8}
                   fontFamily="'Noto Serif SC', serif"
                 >

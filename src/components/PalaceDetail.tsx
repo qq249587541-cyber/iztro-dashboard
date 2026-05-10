@@ -36,33 +36,33 @@ export default function PalaceDetail({ astrolabe, palaceName }: Props) {
   return (
     <div>
       <div className="flex items-center gap-2 mb-4">
-        <span className="w-1 h-5 bg-jinbo rounded-full" />
-        <h2 className="text-daiqing font-bold text-lg tracking-wider">{palace.name}宫</h2>
+        <span className="w-0.5 h-5 bg-accent rounded-full" />
+        <h2 className="text-accent-text font-medium text-lg tracking-wider">{palace.name}宫</h2>
         {(palace as any).isSoulPalace && <span className="seal text-xs">命宫</span>}
-        {palace.isBodyPalace && <span className="px-2 py-0.5 rounded text-xs border border-wuzhi text-wuzhi">身宫</span>}
+        {palace.isBodyPalace && <span className="px-2 py-0.5 rounded text-xs border border-accent text-accent">身宫</span>}
       </div>
 
       <div className="space-y-3 text-sm">
-        <div className="flex justify-between py-1.5 border-b border-border-light">
-          <span className="text-text-secondary tracking-wider">天干地支</span>
+        <div className="flex justify-between py-1.5 border-b border-border-soft">
+          <span className="text-ink-light tracking-wider">天干地支</span>
           <span className="font-medium">{palace.heavenlyStem}{palace.earthlyBranch}</span>
         </div>
-        <div className="flex justify-between py-1.5 border-b border-border-light">
-          <span className="text-text-secondary tracking-wider">大限</span>
-          <span className="text-jinbo">{palace.decadal.range[0]}-{palace.decadal.range[1]}岁</span>
+        <div className="flex justify-between py-1.5 border-b border-border-soft">
+          <span className="text-ink-light tracking-wider">大限</span>
+          <span className="text-accent">{palace.decadal.range[0]}-{palace.decadal.range[1]}岁</span>
         </div>
-        <div className="flex justify-between py-1.5 border-b border-border-light">
-          <span className="text-text-secondary tracking-wider">小限</span>
+        <div className="flex justify-between py-1.5 border-b border-border-soft">
+          <span className="text-ink-light tracking-wider">小限</span>
           <span>{palace.ages.join('、')}岁</span>
         </div>
 
         <div className="divider-ancient" />
 
         <div>
-          <span className="text-text-secondary block mb-2 tracking-wider text-xs">主星</span>
+          <span className="text-ink-light block mb-2 tracking-wider text-xs">主星</span>
           <div className="flex flex-wrap gap-1.5">
             {palace.majorStars.map((s: any, i: number) => (
-              <span key={i} className="bg-daiqing/8 text-daiqing px-2.5 py-1 rounded text-xs font-medium border border-daiqing/20">
+              <span key={i} className="bg-accent-wash text-accent-text px-2.5 py-1 rounded text-xs font-medium border border-accent/15">
                 {s.name}{s.brightness ? `·${s.brightness}` : ''}
               </span>
             ))}
@@ -70,15 +70,15 @@ export default function PalaceDetail({ astrolabe, palaceName }: Props) {
         </div>
 
         <div>
-          <span className="text-text-secondary block mb-2 tracking-wider text-xs">辅星·杂曜</span>
+          <span className="text-ink-light block mb-2 tracking-wider text-xs">辅星·杂曜</span>
           <div className="flex flex-wrap gap-1.5">
             {palace.minorStars.map((s: any, i: number) => (
-              <span key={i} className="bg-pale px-2 py-0.5 rounded text-xs text-text-secondary">
+              <span key={i} className="bg-bg-page px-2 py-0.5 rounded text-xs text-ink-soft">
                 {s.name}
               </span>
             ))}
             {palace.adjectiveStars.map((s: any, i: number) => (
-              <span key={`a-${i}`} className="bg-pale px-2 py-0.5 rounded text-xs text-daiqing-light">
+              <span key={`a-${i}`} className="bg-bg-page px-2 py-0.5 rounded text-xs text-accent-soft">
                 {s.name}
               </span>
             ))}
@@ -86,10 +86,10 @@ export default function PalaceDetail({ astrolabe, palaceName }: Props) {
         </div>
 
         {nature?.soulStarNatures && (palace as any).isSoulPalace && (
-          <div className="bg-pale rounded p-3 mt-3">
-            <span className="text-text-secondary block mb-2 text-xs tracking-wider">命宫主星详解</span>
+          <div className="bg-bg-page rounded p-3 mt-3">
+            <span className="text-ink-light block mb-2 text-xs tracking-wider">命宫主星详解</span>
             {nature.soulStarNatures.slice(0, 2).map((sn: any, i: number) => (
-              <p key={i} className="text-xs text-text-secondary leading-relaxed">
+              <p key={i} className="text-xs text-ink-soft leading-relaxed">
                 {sn.basicNature.slice(0, 80)}……
               </p>
             ))}

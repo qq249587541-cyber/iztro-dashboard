@@ -3,6 +3,8 @@
  * 展示当前节气、农历日期、干支纪年
  */
 
+import SealStamp from './decoration/SealStamp';
+
 const SOLAR_TERMS = [
   '立春','雨水','惊蛰','春分','清明','谷雨',
   '立夏','小满','芒种','夏至','小暑','大暑',
@@ -62,9 +64,9 @@ export default function SolarTermPanel() {
   const nextTermIdx = (termIdx + 1) % 24;
 
   return (
-    <div className="parchment-texture corner-flower rounded-lg p-4 border border-border-light">
-      <h3 className="font-ancient text-daiqing text-sm tracking-wider mb-3 flex items-center gap-2">
-        <span className="w-1 h-4 bg-jinbo rounded-full" />
+    <div className="letter-form p-4">
+      <h3 className="font-ancient text-ink-soft text-sm tracking-wider mb-3 flex items-center gap-2">
+        <SealStamp text="岁时" size="sm" />
         岁时纪
       </h3>
       
@@ -96,7 +98,7 @@ export default function SolarTermPanel() {
         {/* 下一节气 */}
         <div className="flex items-center justify-between">
           <span className="lunar-info"> upcoming</span>
-          <span className="text-text-secondary text-xs" style={{ fontFamily: "'Noto Serif SC', serif" }}>
+          <span className="text-ink-light text-xs" style={{ fontFamily: "'Noto Serif SC', serif" }}>
             {SOLAR_TERMS[nextTermIdx]}
           </span>
         </div>
@@ -105,10 +107,10 @@ export default function SolarTermPanel() {
         <div className="divider-ancient" />
         
         {/* 当日提示 */}
-        <p className="text-text-secondary text-xs leading-relaxed" style={{ fontFamily: "'Noto Serif SC', serif" }}>
-          <span className="text-zhusha">「</span>
+        <p className="text-ink-light text-xs leading-relaxed" style={{ fontFamily: "'Noto Serif SC', serif" }}>
+          <span className="cinnabar-note">「</span>
           {year}年 {SOLAR_TERMS[termIdx]} 时节，{getGanZhiYear(year)}之年，万物各循其序
-          <span className="text-zhusha">」</span>
+          <span className="cinnabar-note">」</span>
         </p>
       </div>
     </div>
