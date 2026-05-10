@@ -100,11 +100,12 @@ body {
 
 /* ========== 书法标题 ========== */
 .font-calligraphy {
-  font-family: 'Ma Shan Zheng', 'Noto Serif SC', cursive;
+  font-family: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  font-weight: 700;
 }
 
 .font-ancient {
-  font-family: 'Noto Serif SC', 'STSong', serif;
+  font-family: 'Noto Serif SC', 'STSong', 'SimSun', serif;
 }
 
 /* ========== 印章 ========== */
@@ -182,19 +183,126 @@ body {
   box-shadow: 0 0 8px rgba(201, 168, 76, 0.2);
 }
 
-/* ========== 古籍卡片 ========== */
+/* ========== 角花装饰 SVG 组件 ========== */
+.corner-ornament {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.corner-ornament-tl { top: -4px; left: -4px; }
+.corner-ornament-tr { top: -4px; right: -4px; transform: rotate(90deg); }
+.corner-ornament-bl { bottom: -4px; left: -4px; transform: rotate(-90deg); }
+.corner-ornament-br { bottom: -4px; right: -4px; transform: rotate(180deg); }
+
+/* ========== 双层边框 —— 古籍线框 ========== */
+.book-border {
+  position: relative;
+  border: 1px solid var(--color-border-soft);
+  background: var(--color-bg-card);
+  border-radius: 2px;
+}
+
+.book-border::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--color-border-faint);
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ========== 标题栏 —— 深墨+暗金衬线 ========== */
+.title-main {
+  font-family: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  color: var(--color-ink);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-shadow: 0 1px 2px rgba(45, 41, 38, 0.1);
+}
+
+/* ========== 水墨上下晕染边框 ========== */
+.ink-wash-border {
+  position: relative;
+}
+
+.ink-wash-border::before,
+.ink-wash-border::after {
+  content: '';
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(45, 41, 38, 0.08) 15%,
+    rgba(45, 41, 38, 0.2) 50%,
+    rgba(45, 41, 38, 0.08) 85%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.ink-wash-border::before { top: 0; }
+.ink-wash-border::after { bottom: 0; }
+
+/* ========== 印章 —— 实心朱砂 ========== */
+.seal-solid {
+  font-family: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  background: var(--color-zhusha);
+  color: var(--color-bg-page);
+  padding: 2px 10px;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.seal-outline {
+  font-family: 'STKaiti', 'KaiTi', 'SimSun', serif;
+  border: 1.5px solid var(--color-zhusha);
+  color: var(--color-zhusha);
+  padding: 2px 10px;
+  border-radius: 2px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  font-weight: 600;
+  line-height: 1.4;
+  background: transparent;
+}
+
+/* ========== 竖排文字 ========== */
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 0.15em;
+}
+
+/* ========== 增强 ========== */
 .book-card {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border-soft);
-  border-radius: 4px;
+  border-radius: 2px;
   transition: all 0.3s ease;
   backdrop-filter: blur(4px);
+  position: relative;
 }
 
-.book-card:hover {
-  border-color: var(--color-gold-light);
-  box-shadow: 0 4px 16px rgba(139, 105, 20, 0.08);
-  transform: translateY(-1px);
+.book-card::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid var(--color-border-faint);
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* ========== 信笺样式表单容器 ========== */

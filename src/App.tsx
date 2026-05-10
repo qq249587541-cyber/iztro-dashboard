@@ -102,22 +102,48 @@ function App() {
 
   return (
     <div className="min-h-screen bg-bg-page">
+      {/* 右上角小印章落款 */}
+      <div className="fixed top-6 right-6 z-10 hidden md:block opacity-70 hover:opacity-100 transition-opacity">
+        <span className="seal-outline">紫微</span>
+      </div>
+
       {loading && <LoadingInk />}
 
-      {/* ====== 顶部标题栏 —— 宋式素雅 ====== */}
-      <header className="pt-16 pb-12 text-center animate-ink">
-        <h1 className="text-4xl md:text-5xl font-normal tracking-[0.3em] mb-4 font-calligraphy text-ink">
+      {/* ====== 顶部标题栏 ====== */}
+      <header className="pt-16 pb-10 text-center animate-ink">
+        <h1 className="text-4xl md:text-6xl tracking-[0.3em] mb-3 title-main">
           紫微斗数
         </h1>
-        <p className="text-ink-light text-sm tracking-[0.4em] font-ancient">
+        <p className="text-ink-soft text-sm tracking-[0.4em] font-ancient">
           命盘推演 · 时光机 · 人生K线
         </p>
-        <div className="w-16 h-px bg-border mx-auto mt-8" />
       </header>
 
       {/* ====== 排盘输入区 ====== */}
       <div className="max-w-3xl mx-auto px-4 md:px-0 mb-16 animate-ink" style={{ animationDelay: '0.1s' }}>
-        <div className="bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+        <div className="book-border p-6 md:p-8 ink-wash-border">
+          {/* 四角角花 */}
+          <svg className="corner-ornament corner-ornament-tl" viewBox="0 0 48 48" fill="none">
+            <path d="M4 20V4H20" stroke="#b8860b" strokeWidth="1" opacity="0.4"/>
+            <path d="M4 12V4H12" stroke="#b8860b" strokeWidth="1.5" opacity="0.6"/>
+            <circle cx="6" cy="6" r="2" fill="#b8860b" opacity="0.3"/>
+          </svg>
+          <svg className="corner-ornament corner-ornament-tr" viewBox="0 0 48 48" fill="none">
+            <path d="M44 20V4H28" stroke="#b8860b" strokeWidth="1" opacity="0.4"/>
+            <path d="M44 12V4H36" stroke="#b8860b" strokeWidth="1.5" opacity="0.6"/>
+            <circle cx="42" cy="6" r="2" fill="#b8860b" opacity="0.3"/>
+          </svg>
+          <svg className="corner-ornament corner-ornament-bl" viewBox="0 0 48 48" fill="none">
+            <path d="M4 28V44H20" stroke="#b8860b" strokeWidth="1" opacity="0.4"/>
+            <path d="M4 36V44H12" stroke="#b8860b" strokeWidth="1.5" opacity="0.6"/>
+            <circle cx="6" cy="42" r="2" fill="#b8860b" opacity="0.3"/>
+          </svg>
+          <svg className="corner-ornament corner-ornament-br" viewBox="0 0 48 48" fill="none">
+            <path d="M44 28V44H28" stroke="#b8860b" strokeWidth="1" opacity="0.4"/>
+            <path d="M44 36V44H36" stroke="#b8860b" strokeWidth="1.5" opacity="0.6"/>
+            <circle cx="42" cy="42" r="2" fill="#b8860b" opacity="0.3"/>
+          </svg>
+
           <div className="flex flex-wrap gap-4 md:gap-6 items-end justify-center">
             <div>
               <label className="block text-ink-light text-xs mb-2 tracking-wider font-ancient">姓名（可选）</label>
@@ -126,7 +152,7 @@ function App() {
                 value={personName}
                 onChange={(e) => setPersonName(e.target.value)}
                 placeholder="输入姓名"
-                className="bg-bg-page border border-border rounded px-3 py-2 text-ink focus:outline-none focus:border-divider text-sm w-28 font-ancient transition-colors"
+                className="input-ancient px-3 py-2 text-sm w-28"
               />
             </div>
             <div>
@@ -135,7 +161,7 @@ function App() {
                 type="date"
                 value={birthDate}
                 onChange={(e) => setBirthDate(e.target.value)}
-                className="bg-bg-page border border-border rounded px-3 py-2 text-ink focus:outline-none focus:border-divider text-sm font-ancient transition-colors"
+                className="input-ancient px-3 py-2 text-sm"
               />
             </div>
             <div>
@@ -143,7 +169,7 @@ function App() {
               <select
                 value={birthTime}
                 onChange={(e) => setBirthTime(e.target.value)}
-                className="bg-bg-page border border-border rounded px-3 py-2 text-ink focus:outline-none focus:border-divider text-sm font-ancient transition-colors"
+                className="input-ancient px-3 py-2 text-sm"
               >
                 {[
                   { v: 0, label: '早子时 (00:00-01:00)' },
@@ -171,7 +197,7 @@ function App() {
               <select
                 value={gender}
                 onChange={(e) => setGender(e.target.value as '男' | '女')}
-                className="bg-bg-page border border-border rounded px-3 py-2 text-ink focus:outline-none focus:border-divider text-sm font-ancient transition-colors"
+                className="input-ancient px-3 py-2 text-sm"
               >
                 <option value="男">乾（男）</option>
                 <option value="女">坤（女）</option>
@@ -179,25 +205,26 @@ function App() {
             </div>
             <button
               onClick={handleGenerate}
-              className="bg-accent hover:bg-accent-soft text-bg-page px-8 py-2.5 rounded transition-colors text-sm tracking-widest font-ancient"
+              className="btn-seal"
             >
               {loading ? '墨染中…' : '起 盘'}
             </button>
             {astrolabe && (
               <button
                 onClick={handleSave}
-                className="bg-bg-page hover:bg-bg-hover border border-border text-ink-soft px-4 py-2.5 rounded transition-colors text-sm tracking-widest font-ancient"
+                className="btn-gold"
               >
-                保存
+                保存命盘
               </button>
             )}
           </div>
 
           {/* ====== 我的命盘列表 ====== */}
-          <div className="mt-8 pt-6 border-t border-border-soft">
+          <div className="mt-8 pt-6 divider-ancient">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-accent text-sm tracking-wider font-ancient">我的命盘</span>
-              <span className="bg-border text-ink-light text-[10px] px-1.5 py-0.5 rounded-full">
+              <span className="seal-outline">命盘</span>
+              <span className="text-ink-soft text-sm tracking-wider font-ancient">我的命盘</span>
+              <span className="bg-pale text-ink-light text-[10px] px-1.5 py-0.5 rounded-full font-ancient">
                 {savedList.length}
               </span>
             </div>
@@ -210,7 +237,7 @@ function App() {
                 {savedList.map((s) => (
                   <div
                     key={s.id}
-                    className="bg-bg-page rounded p-3 border border-border-soft hover:border-divider transition-all cursor-pointer relative group"
+                    className="book-card p-3 cursor-pointer relative group"
                   >
                     <div onClick={() => handleLoad(s)} className="min-w-0">
                       <div className="text-ink text-sm font-medium truncate">{s.name}</div>
@@ -235,14 +262,14 @@ function App() {
       {/* ====== 信息栏：罗盘 + 节气 ====== */}
       <div className="max-w-3xl mx-auto px-4 md:px-0 mb-12 grid grid-cols-1 md:grid-cols-3 gap-4 animate-ink" style={{ animationDelay: '0.15s' }}>
         <div className="md:col-span-1 md:col-start-3 space-y-4">
-          <div className="bg-bg-card rounded-lg p-4 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex justify-center">
+          <div className="book-border p-4 flex justify-center">
             <HeavenlyStemCompass />
           </div>
           <SolarTermPanel />
         </div>
       </div>
 
-      {/* ====== 标签切换 —— 极简 Tab ====== */}
+      {/* ====== 标签切换 ====== */}
       {astrolabe && (
         <div className="max-w-5xl mx-auto px-4 md:px-0 mb-10 flex flex-wrap gap-2 justify-center animate-ink"
              style={{ animationDelay: '0.2s' }}>
@@ -250,11 +277,7 @@ function App() {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-5 py-2 rounded text-sm tracking-wider transition-all border font-ancient ${
-                activeTab === tab
-                  ? 'bg-accent text-bg-page border-accent'
-                  : 'bg-bg-card text-ink-soft border-border-soft hover:border-divider hover:text-ink'
-              }`}
+              className={`tab-ancient ${activeTab === tab ? 'tab-ancient-active' : ''}`}
             >
               {tab === 'chart' && '命盘格局'}
               {tab === 'kline' && '人生K线'}
@@ -273,9 +296,9 @@ function App() {
         <div className="max-w-5xl mx-auto px-4 md:px-0 pb-20 animate-ink" style={{ animationDelay: '0.3s' }}>
           {activeTab === 'chart' && (
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-              <div className="lg:col-span-2 bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
-                <h2 className="text-accent-text font-medium text-base mb-6 tracking-wider flex items-center gap-2 font-ancient">
-                  <span className="w-0.5 h-4 bg-accent rounded-full" />
+              <div className="lg:col-span-2 book-card p-6 md:p-8">
+                <h2 className="text-ink-soft font-medium text-base mb-6 tracking-wider flex items-center gap-2 font-ancient">
+                  <span className="seal-outline">命盘</span>
                   紫微命盘
                 </h2>
                 <ZiWeiChart
@@ -288,40 +311,40 @@ function App() {
                   gender={gender}
                 />
               </div>
-              <div className="bg-bg-card rounded-lg p-6 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+              <div className="book-card p-6">
                 <PalaceDetail
                   astrolabe={astrolabe}
                   palaceName={selectedPalace}
                 />
               </div>
-              <div className="lg:col-span-3 bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+              <div className="lg:col-span-3 book-card p-6 md:p-8">
                 <PatternPanel astrolabe={astrolabe} />
               </div>
             </div>
           )}
 
           {activeTab === 'kline' && (
-            <div className="bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+            <div className="book-card p-6 md:p-8">
               <LifeKLine astrolabe={astrolabe} />
             </div>
           )}
 
           {activeTab === 'horoscope' && (
-            <div className="bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+            <div className="book-card p-6 md:p-8">
               <HoroscopePanel astrolabe={astrolabe} />
             </div>
           )}
 
           {activeTab === 'timeline' && (
-            <div className="bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+            <div className="book-card p-6 md:p-8">
               <TimelinePanel astrolabe={astrolabe} />
             </div>
           )}
 
           {activeTab === 'reading' && (
-            <div className="bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
-              <h2 className="text-accent-text font-medium text-base mb-6 tracking-wider flex items-center gap-2 font-ancient">
-                <span className="w-0.5 h-4 bg-accent rounded-full" />
+            <div className="book-card p-6 md:p-8">
+              <h2 className="text-ink-soft font-medium text-base mb-6 tracking-wider flex items-center gap-2 font-ancient">
+                <span className="seal-outline">解读</span>
                 命盘深度解读
               </h2>
               <AIInterpretation
@@ -335,9 +358,9 @@ function App() {
           )}
 
           {activeTab === 'prediction' && (
-            <div className="bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
-              <h2 className="text-accent-text font-medium text-base mb-6 tracking-wider flex items-center gap-2 font-ancient">
-                <span className="w-0.5 h-4 bg-accent rounded-full" />
+            <div className="book-card p-6 md:p-8">
+              <h2 className="text-ink-soft font-medium text-base mb-6 tracking-wider flex items-center gap-2 font-ancient">
+                <span className="seal-outline">运势</span>
                 运势预测
               </h2>
               <PredictionTimeline astrolabe={astrolabe} />
@@ -345,9 +368,9 @@ function App() {
           )}
 
           {activeTab === 'remedy' && (
-            <div className="bg-bg-card rounded-lg p-6 md:p-8 border border-border-soft shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
-              <h2 className="text-accent-text font-medium text-base mb-6 tracking-wider flex items-center gap-2 font-ancient">
-                <span className="w-0.5 h-4 bg-accent rounded-full" />
+            <div className="book-card p-6 md:p-8">
+              <h2 className="text-ink-soft font-medium text-base mb-6 tracking-wider flex items-center gap-2 font-ancient">
+                <span className="seal-outline">改运</span>
                 改运建议
               </h2>
               <RemedyPanel />
@@ -365,18 +388,22 @@ function App() {
           <p className="text-sm mt-3 tracking-wider font-ancient">
             起盘后即可查看命盘、人生K线与时光机推演
           </p>
-          <div className="w-12 h-px bg-border mx-auto mt-8" />
+          <div className="divider-ancient w-48 mx-auto mt-8" />
           <div className="mt-10 opacity-30">
             <HeavenlyStemCompass />
           </div>
         </div>
       )}
 
-      {/* ====== 页脚 —— 极简落款 ====== */}
-      <footer className="text-center py-12 border-t border-border-soft">
+      {/* ====== 页脚 ====== */}
+      <footer className="text-center py-12">
+        <div className="divider-ancient w-48 mx-auto mb-8" />
         <div className="text-ink-faint text-xs tracking-[0.3em] font-ancient">
           <p>紫微斗数开源可视化</p>
-          <p className="mt-1">以 iztro 之核 · 探命数之理</p>
+          <p className="mt-1">探命数之理 · 知进退之机</p>
+        </div>
+        <div className="mt-4">
+          <span className="seal-solid">开源</span>
         </div>
       </footer>
     </div>
