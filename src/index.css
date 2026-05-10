@@ -1,0 +1,339 @@
+@import "tailwindcss";
+
+/* ========== 字体：极度克制 ========== */
+@font-face {
+  font-family: 'LXGW WenKai';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css) format('woff2');
+}
+
+@font-face {
+  font-family: 'LXGW WenKai';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/style.css) format('woff2');
+}
+
+@font-face {
+  font-family: 'Noto Serif SC';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserifsc/v22/H4c8BXePl9DZ0Xe7gG9cyOj7mnqFX1nH.woff2) format('woff2');
+}
+
+@theme {
+  /* 宋式素雅配色 —— 低饱和、冷调、留白 */
+  --color-bg-page: #f5f4f1;        /* 月白/暖灰白 */
+  --color-bg-card: #ffffff;        /* 纯白卡片 */
+  --color-bg-soft: #faf9f7;       /* 极淡灰白 */
+  --color-bg-hover: #f0eeeb;      /* 悬停背景 */
+
+  --color-ink: #2a2a2a;           /* 墨色主文字 */
+  --color-ink-soft: #5c5c5c;       /* 次要文字 */
+  --color-ink-light: #9a9a9a;      /* 辅助文字 */
+  --color-ink-faint: #c0c0c0;      /* 极淡文字 */
+
+  --color-border: #e8e6e3;         /* 主边框 */
+  --color-border-soft: #f2f0ed;    /* 淡边框 */
+  --color-divider: #d5d3cf;       /* 分割线 */
+
+  --color-accent: #4a6352;         /* 淡黛青 — 唯一强调色 */
+  --color-accent-soft: #5a7562;    /* 淡青 hover */
+  --color-accent-wash: #eef2ee;  /* 淡青背景 */
+  --color-accent-text: #3a5245;    /* 淡青文字 */
+
+  --color-warm: #8b7d6b;          /* 淡赭石点缀 */
+  --color-warm-soft: #a09080;     /* 淡赭 hover */
+  --color-warm-wash: #f5f0ea;     /* 淡赭背景 */
+
+  /* 兼容旧名 */
+  --color-parchment: #f5f4f1;
+  --color-parchment-deep: #f0eeeb;
+  --color-daiqing: #4a6352;
+  --color-daiqing-light: #5a7562;
+  --color-zhusha: #a05050;
+  --color-jinbo: #9a8a7a;
+  --color-jinbo-light: #b0a090;
+  --color-shiqing: #6a8a7a;
+  --color-mose: #2a2a2a;
+  --color-pale-dark: #e8e6e3;
+  --color-text-primary: #2a2a2a;
+  --color-text-secondary: #5c5c5c;
+  --color-border-light: #e8e6e3;
+  --color-border-accent: #c0c0c0;
+}
+
+/* ========== 全局 ========== */
+body {
+  background-color: var(--color-bg-page);
+  color: var(--color-ink);
+  font-family: 'LXGW WenKai', 'Noto Serif SC', 'STSong', 'SimSun', serif;
+  min-height: 100vh;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 滚动条 —— 极简 */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-divider);
+}
+
+/* ========== 水墨淡入动画（保留核心） ========== */
+@keyframes inkFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-ink {
+  animation: inkFade 0.5s ease-out forwards;
+}
+
+/* ========== 印章 —— 极度克制 ========== */
+.seal {
+  font-family: 'Noto Serif SC', serif;
+  border: 1px solid var(--color-zhusha);
+  color: var(--color-zhusha);
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  display: inline-block;
+  background: transparent;
+  opacity: 0.6;
+}
+
+.seal-sm {
+  font-family: 'Noto Serif SC', serif;
+  border: 1px solid var(--color-zhusha);
+  color: var(--color-zhusha);
+  padding: 1px 5px;
+  border-radius: 2px;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  display: inline-block;
+  background: transparent;
+  opacity: 0.5;
+}
+
+/* ========== 书法标题 ========== */
+.font-calligraphy {
+  font-family: 'LXGW WenKai', 'Noto Serif SC', serif;
+}
+
+.font-ancient {
+  font-family: 'Noto Serif SC', serif;
+}
+
+/* ========== 细线分隔 —— 极简 ========== */
+.divider-ancient {
+  height: 1px;
+  background: var(--color-border);
+  margin: 1.5rem 0;
+}
+
+/* ========== 宣纸纹理卡片 —— 去掉纹理，只留底色 ========== */
+.parchment-texture {
+  position: relative;
+  background: var(--color-bg-card);
+}
+
+/* ========== 角花边框 —— 极简化为细线 ========== */
+.corner-flower {
+  position: relative;
+}
+
+/* ========== 选中态 —— 淡青描边 ========== */
+.selected-ancient {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 1px rgba(74, 99, 82, 0.15);
+}
+
+/* ========== 星曜 tooltip ========== */
+.star-tooltip {
+  position: absolute;
+  z-index: 50;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+  color: var(--color-ink-soft);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+  max-width: 200px;
+  line-height: 1.6;
+  font-family: 'LXGW WenKai', serif;
+}
+
+/* ========== 标签页切换动画 ========== */
+@keyframes pageFlipIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-flip-in {
+  animation: pageFlipIn 0.3s ease-out forwards;
+}
+
+/* ========== 古籍卡片 hover ========== */
+.book-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.book-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+
+/* ========== 锦囊卡片 ========== */
+.pouch-card {
+  background: var(--color-bg-soft);
+  border-radius: 8px;
+  position: relative;
+}
+
+/* ========== 金箔锦囊 ========== */
+.gold-pouch {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  position: relative;
+  border-radius: 6px;
+}
+
+/* ========== 时光卷轴时间轴 ========== */
+.timeline-scroll {
+  position: relative;
+  padding-left: 24px;
+}
+.timeline-scroll::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--color-border);
+}
+.timeline-node {
+  position: relative;
+}
+.timeline-node::before {
+  content: '';
+  position: absolute;
+  left: -19px;
+  top: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-border);
+  border: 2px solid var(--color-bg-card);
+}
+
+/* ========== 罗盘容器 ========== */
+.compass-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+/* ========== 天干地支标签 ========== */
+.stem-label {
+  font-family: 'LXGW WenKai', serif;
+  font-size: 0.8rem;
+  color: var(--color-ink-soft);
+}
+.branch-label {
+  font-family: 'LXGW WenKai', serif;
+  font-size: 0.75rem;
+  color: var(--color-ink-light);
+}
+
+/* ========== 节气标签 ========== */
+.solar-term {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  letter-spacing: 0.1em;
+}
+
+/* ========== 农历信息 ========== */
+.lunar-info {
+  font-family: 'LXGW WenKai', serif;
+  font-size: 0.75rem;
+  color: var(--color-ink-light);
+  line-height: 1.6;
+}
+
+/* ========== 呼吸闪烁 ========== */
+@keyframes breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* ========== 星曜悬停微浮 ========== */
+.star-float {
+  transition: transform 0.25s ease;
+}
+.star-float:hover {
+  transform: translateY(-1px);
+}
+
+/* ========== 卷轴展开动画 ========== */
+@keyframes scrollUnroll {
+  from { transform: scaleY(0); opacity: 0; }
+  to { transform: scaleY(1); opacity: 1; }
+}
+.scroll-unroll {
+  transform-origin: top;
+  animation: scrollUnroll 0.5s ease-out forwards;
+}
+
+/* ========== 朱砂批注样式 ========== */
+.cinnabar-note {
+  color: var(--color-zhusha);
+  position: relative;
+  font-family: 'LXGW WenKai', serif;
+  opacity: 0.8;
+}
+
+/* ========== 按钮点击涟漪 ========== */
+@keyframes inkRippleBtn {
+  0% { transform: scale(0); opacity: 0.3; }
+  100% { transform: scale(4); opacity: 0; }
+}
+.ink-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(42,42,42,0.1);
+  animation: inkRippleBtn 0.8s ease-out forwards;
+  pointer-events: none;
+}
+
+/* ========== 墨晕阴影（保留但弱化） ========== */
+@keyframes inkShadow {
+  0% { filter: drop-shadow(0 0 0px rgba(42,42,42,0)); }
+  50% { filter: drop-shadow(0 0 4px rgba(42,42,42,0.15)); }
+  100% { filter: drop-shadow(0 0 0px rgba(42,42,42,0)); }
+}
+
+/* ========== 淡入动画（所有面板） ========== */
+.panel-ink {
+  animation: inkFade 0.5s ease-out forwards;
+}
+
