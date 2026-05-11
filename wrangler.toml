@@ -1,9 +1,0 @@
-name = "iztro-dashboard"
-compatibility_date = "2026-05-10"
-
-# Cloudflare Pages 配置
-[env.production]
-# 静态站点部署到 Pages
-
-[[env.production.vars]]
-# 如需环境变量可在此添加
